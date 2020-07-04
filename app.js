@@ -17,6 +17,30 @@ let phrase = ["May the fourth be with you",
     "Keep it moving"
 ]
 
+// Choosing a random phrase from the phrases array
+function getRandomPhraseAsArray() {
+    // length of array based on random number
+    let randomNum = phrases.length;
+    getRandomPhraseAsArray(phrases);
+}
+
+
+function addPhraseToDisplay(phrase) {
+    for (let i = 0; i < phrases.length; i++) {
+        const li = document.createElement(li);
+        li.textContent = phrase[i];
+        if (phrase[i] === "") {
+            li.className = "space";
+        } else {
+            li.className = "letter";
+        }
+        phrase.appendChild(li);
+    }
+}
+
+
+
+
 
 
 
