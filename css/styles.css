@@ -29,7 +29,9 @@ body {
   height: 100vh;
 }
 
-li, ol, ul {
+li,
+ol,
+ul {
   padding: 0;
   display: inline-block;
 }
@@ -135,7 +137,7 @@ button {
 }
 
 .title {
-  color: #FFF;
+  color: #469bfa;
 }
 
 .start {
