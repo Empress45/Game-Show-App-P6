@@ -32,5 +32,4 @@ function getRandomPhraseAsArray(arr) {
 startGameBtn.addEventListener('click', () => {
     overlay.setAttribute('style', 'display:none');
     resetGame();
-
 });
