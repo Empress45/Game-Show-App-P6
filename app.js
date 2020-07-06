@@ -26,8 +26,6 @@ function getRandomPhraseAsArray(arr) {
     getRandomPhraseAsArray(phrases);
 }
 
-
-
 // Listening for click on Start Game Button while hiding overlay
 startGameBtn.addEventListener('click', () => {
     overlay.setAttribute('style', 'display:none');
