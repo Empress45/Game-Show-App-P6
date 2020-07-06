@@ -38,16 +38,7 @@ function addPhraseToDisplay(phrase) {
     }
 }
 
-
-
-
-
-
-
-
-
 // Listening for start button to be pressed 
 startGame.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    resetGame();
+    startGame.style.display = 'none';
 });
