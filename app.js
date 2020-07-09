@@ -95,3 +95,4 @@ function resetGame() {
         keyboard[i].disabled = 'false';
     }
 }
+
