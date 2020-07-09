@@ -95,3 +95,7 @@ function resetGame() {
         keyboard[i].disabled = 'false';
     }
 }
+
+function clearMove() {
+
+}
