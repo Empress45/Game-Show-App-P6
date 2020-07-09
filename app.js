@@ -47,7 +47,7 @@ qwerty.addEventListener('click', (event) => {
             missedGuess += 1;
             let li = document.querySelectorAll('.tries')[0];
             let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
-            liveHeart.remove(5); // Hearts removed
+            heart[5].remove(); // Hearts removed
             let lostHeart = document.createElement('li'); // Element for lost hearts
             lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
             lostHeart.classList.add('tries');
