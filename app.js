@@ -21,41 +21,25 @@ const phrases = ["May the force be with you",
     "Alright Alright Alright"
 ];
 
-// Listening for click on Start Game Button while hiding overlay
-startGame.addEventListener('click', () => {
-    if (startGame.textContent == 'Start Game') {
-        overlay.style.display = 'none';
-    } else if (startGame.textContent == 'Please try again')
-        resetGame()
-});
 
 // Random Phrase Array returning a random phrase
-function getRandomPhraseAsArray() {
-    let randomNum = phrases.length;
-    getRandomPhraseAsArray(phrases);
-}
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
 
-// Event Listener for Keyboard presses
-qwerty.addEventListener('click', (event) => {
-    if (event.target.tagName == 'BUTTON') {
-        const button = event.target;
-        const letterClicked = event.target.innerHTML;
-        let letterFound = checkLetter(letterClicked);
-        button.classList.add('chosen');
-        button.disabled = 'true';
-        if (letterFound == null) {
-            missedGuess += 1;
-            let li = document.querySelectorAll('.tries')[0];
-            let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
-            heart[5].remove(); // Hearts removed
-            let lostHeart = document.createElement('li'); // Element for lost hearts
-            lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
-            lostHeart.classList.add('tries');
-            let heartSection = document.querySelectorAll('ol')[0]; // List of child elements
-            heartSection.insertBefore(lostHeart, liveHeart[0]) // New lostHeart inserted
+// Loops through array of characters
+function addPhraseToDisplay(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let li = doucment.createElement('li');
+        li.textContent = arr[i];
+        phraseUL.appendChild(li);
+        if (arr[i] != '') {
+            li.className = 'letter';
+        } else {
+            li.className = 'space';
         }
     }
-});
+}
+
 
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(btn) {
@@ -86,6 +70,40 @@ function checkWin() {
     }
 }
 
+// Listening for click on Start Game Button while hiding overlay
+startGame.addEventListener('click', () => {
+    if (startGame.textContent == 'Start Game') {
+        overlay.style.display = 'none';
+    } else if (startGame.textContent == 'Please try again')
+        resetGame()
+});
+
+
+// Event Listener for Keyboard presses
+qwerty.addEventListener('click', (event) => {
+    if (event.target.tagName == 'BUTTON') {
+        const button = event.target;
+        const letterClicked = event.target.innerHTML;
+        let letterFound = checkLetter(letterClicked);
+        button.classList.add('chosen');
+        button.disabled = 'true';
+        if (letterFound == null) {
+            missedGuess += 1;
+            let li = document.querySelectorAll('.tries')[0];
+            let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
+            hearts[4].remove(); // Hearts removed
+            let lostHeart = document.createElement('li'); // Element for lost hearts
+            lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
+            lostHeart.classList.add('tries');
+            let heartSection = document.querySelectorAll('ol')[0]; // List of child elements
+            heartSection.insertBefore(lostHeart, liveHeart[0]) // New lostHeart inserted
+        }
+    }
+});
+
+
+
+
 // Resetting the game after a win or loss
 function resetGame() {
     missed = 0;
@@ -95,4 +113,3 @@ function resetGame() {
         keyboard[i].disabled = 'false';
     }
 }
-
