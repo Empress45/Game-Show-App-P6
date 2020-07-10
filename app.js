@@ -6,7 +6,7 @@ const phraseUL = document.querySelector('#phrase ul');
 const startGame = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
-const liveHeart = Array.from(document.querySelectorAll('ol li'));
+let liveHeart = Array.from(document.querySelectorAll('ol li'));
 
 
 // Guesses Missed initialized with 0
@@ -21,24 +21,31 @@ const phrases = ["May the force be with you",
     "Alright Alright Alright"
 ];
 
+// Random phrase array returing a random phrase
+function getRandomPhraseAsArray(arr) {
+    const randomPhrase = Math.floor(Math.random() * arr.length);
+    return randomPhrase;
+}
 
-// Random Phrase Array returning a random phrase
-const phraseArray = getRandomPhraseAsArray(phrases);
-addPhraseToDisplay(phraseArray);
+getRandomPhraseAsArray(phrases);
 
-// Loops through array of characters
+
+// Display phrase
 function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let li = doucment.createElement('li');
+        let li = document.createElement('li');
         li.textContent = arr[i];
         phraseUL.appendChild(li);
-        if (arr[i] != '') {
+        if (arr[i] !== " ") {
             li.className = 'letter';
         } else {
             li.className = 'space';
         }
     }
 }
+
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
 
 
 // CheckLetter Function checking for letter in the phrase
@@ -80,26 +87,27 @@ startGame.addEventListener('click', () => {
 
 
 // Event Listener for Keyboard presses
-qwerty.addEventListener('click', (event) => {
-    if (event.target.tagName == 'BUTTON') {
-        const button = event.target;
-        const letterClicked = event.target.innerHTML;
-        let letterFound = checkLetter(letterClicked);
-        button.classList.add('chosen');
-        button.disabled = 'true';
-        if (letterFound == null) {
-            missedGuess += 1;
-            let li = document.querySelectorAll('.tries')[0];
-            let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
-            hearts[4].remove(); // Hearts removed
-            let lostHeart = document.createElement('li'); // Element for lost hearts
-            lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
-            lostHeart.classList.add('tries');
-            let heartSection = document.querySelectorAll('ol')[0]; // List of child elements
-            heartSection.insertBefore(lostHeart, liveHeart[0]) // New lostHeart inserted
-        }
-    }
-});
+//qwerty.addEventListener('click', (event) => {
+//   if (event.target.tagName == 'BUTTON') {
+//        const button = event.target;
+//       const letterClicked = event.target.innerHTML;
+//       let letterFound = checkLetter(letterClicked);
+//        button.classList.add('chosen');
+//       button.disabled = 'true';
+//      if (letterFound == null) {
+//          missedGuess += 1;
+//           let li = document.querySelectorAll('.tries')[0];
+//           let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
+//            Heart[4].remove(); // Hearts removed
+//           let lostHeart = document.createElement('li'); // Element for lost hearts
+//           lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
+//           lostHeart.classList.add('tries');
+//           let heartSection = document.querySelectorAll('ol')[0]; // List of child elements
+//          heartSection.insertBefore(lostHeart, liveHeart[0]) // New lostHeart inserted
+//       }
+//    }
+//   checkWin();  
+//});
 
 
 
