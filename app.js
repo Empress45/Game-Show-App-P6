@@ -4,13 +4,15 @@ const qwerty = document.getElementById('qwerty');
 const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
 const startGame = document.querySelector('.btn__reset');
+const lives = document.querySelectorAll('tries');
 const overlay = document.getElementById('overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
+let triesImg = Array.from(document.querySelectorAll('tries img'));
 
 
 // Guesses Missed initialized with 0
-let missedGuess = 0;
+let missedGuess = 5;
 
 
 // Phrases Array
@@ -21,7 +23,16 @@ const phrases = ["May the force be with you",
     "Alright Alright Alright"
 ];
 
-// Random phrase array returing a random phrase
+// Listening for click on Start Game Button while hiding overlay
+startGame.addEventListener('click', () => {
+    if (startGame.textContent == 'Start Game') {
+        overlay.style.display = 'none';
+    } else if (startGame.textContent == 'Please try again')
+        resetGame()
+});
+
+
+// Random phrase array returning a random phrase
 function getRandomPhraseAsArray(arr) {
     const randomPhrase = Math.floor(Math.random() * arr.length);
     return randomPhrase;
@@ -48,6 +59,21 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
 
+
+// Keyboard clicks
+qwerty.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') {
+        const button = e.target;
+        button.className += 'chosen';
+        button.disabled = 'true';
+        const letterFound = checkLetter(button);
+        if (letterFound === null) {
+            missedGuess -= 1
+            lives.src = 'images/lostHeart.png';
+        }
+    }
+});
+
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(btn) {
     let match = null;
@@ -69,7 +95,7 @@ function checkWin() {
         headline.textContent = 'You have Won!';
         overlay.style.display = 'flex';
         startButton.textContent = 'Please try again';
-    } else if (missed >= 5) {
+    } else if (missedGuess >= 5) {
         overlay.className = 'Lose';
         headline.textContent = 'You have lost';
         overlay.style.display = 'flex';
@@ -77,47 +103,17 @@ function checkWin() {
     }
 }
 
-// Listening for click on Start Game Button while hiding overlay
-startGame.addEventListener('click', () => {
-    if (startGame.textContent == 'Start Game') {
-        overlay.style.display = 'none';
-    } else if (startGame.textContent == 'Please try again')
-        resetGame()
-});
-
-
-// Event Listener for Keyboard presses
-//qwerty.addEventListener('click', (event) => {
-//   if (event.target.tagName == 'BUTTON') {
-//        const button = event.target;
-//       const letterClicked = event.target.innerHTML;
-//       let letterFound = checkLetter(letterClicked);
-//        button.classList.add('chosen');
-//       button.disabled = 'true';
-//      if (letterFound == null) {
-//          missedGuess += 1;
-//           let li = document.querySelectorAll('.tries')[0];
-//           let liveHeart = document.querySelectorAll('ol').children; // Heart elements selected
-//            Heart[4].remove(); // Hearts removed
-//           let lostHeart = document.createElement('li'); // Element for lost hearts
-//           lostHeart.innerHTML = "<'img src = images/lostHeart.png' height = '35px' width = '30px'>";
-//           lostHeart.classList.add('tries');
-//           let heartSection = document.querySelectorAll('ol')[0]; // List of child elements
-//          heartSection.insertBefore(lostHeart, liveHeart[0]) // New lostHeart inserted
-//       }
-//    }
-//   checkWin();  
-//});
-
-
-
-
 // Resetting the game after a win or loss
 function resetGame() {
-    missed = 0;
-    const keyboard = document.querySelectorAll('button');
+    missedGuess = 0;
+    const keyboard = document.querySelectorAll('keyrow button');
     for (let i = 0; i < keyboard.length; i++) {
         keyboard[i].className = '';
         keyboard[i].disabled = 'false';
+    }
+    phraseUL.textContent = '';
+    for (let i = 0; i < liveHeart.length; i++) {
+        liveHeart[i].classsName = 'tries';
+        triesImg[i].src = 'images/lostHeart.png';
     }
 }
