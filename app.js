@@ -34,11 +34,12 @@ startGame.addEventListener('click', () => {
 
 // Random phrase array returning a random phrase
 function getRandomPhraseAsArray(arr) {
-    const randomPhrase = Math.floor(Math.random() * arr.length);
-    return randomPhrase;
+    const randomPhrase = arr[Math.floor(Math.random() * arr.length)];
+    const words = randomPhrase.split('');
+    return words;
 }
-
-getRandomPhraseAsArray(phrases);
+const phraseArray = getRandomPhraseAsArray(phrases);
+console.log(phraseArray);
 
 
 // Display phrase
@@ -54,10 +55,7 @@ function addPhraseToDisplay(arr) {
         }
     }
 }
-
-const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
-
 
 
 // Keyboard clicks
