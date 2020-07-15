@@ -33,12 +33,29 @@ startGame.addEventListener('click', () => {
 
 
 // Random phrase array returning a random phrase
-const getRandomPhraseAsArray = arr => {
-    let randomNum = Math.floor(Math.random() * phrases.length);
-    for (let value of arr) return arr[randomNum];
+function getRandomPhraseAsArray(arr) {
+    const randomPhrase = arr[Math.floor(Math.random() * arr.length)];
+    const words = randomPhrase.split('');
+    return words;
 }
-const phraseArray = getRandomPhraseAsArray(phrases).split('');
+const phraseArray = getRandomPhraseAsArray(phrases);
 console.log(phraseArray);
+
+
+// Display Phrase
+function addPhraseToDisplay(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let li = document.createElement('li');
+        li.textContext = arr[i];
+        phraseUL.appendChild(li);
+        if (arr[i] !== '') {
+            li.className = 'letter';
+        } else {
+            li.className = 'space';
+        }
+    }
+}
+addPhraseToDisplay(phrases);
 
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(btn) {
@@ -83,20 +100,6 @@ function checkWin() {
     }
 }
 
-// Display Phrase
-function addPhraseToDisplay(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let li = document.createElement('li');
-        li.textContext = arr[i];
-        phraseUL.appendChild(li);
-        if (arr[i] !== '') {
-            li.className = 'letter';
-        } else {
-            li.className = 'space';
-        }
-    }
-}
-addPhraseToDisplay(phrases);
 
 // Resetting the game after a win or loss
 function resetGame() {
