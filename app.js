@@ -12,7 +12,7 @@ let triesImg = Array.from(document.querySelectorAll('tries img'));
 
 
 // Guesses Missed initialized with 0
-let missedGuess = 5;
+let missedGuess = 0;
 
 
 // Phrases Array
@@ -33,44 +33,12 @@ startGame.addEventListener('click', () => {
 
 
 // Random phrase array returning a random phrase
-function getRandomPhraseAsArray(arr) {
-    const randomPhrase = arr[Math.floor(Math.random() * arr.length)];
-    const words = randomPhrase.split('');
-    return words;
+const getRandomPhraseAsArray = arr => {
+    let randomNum = Math.floor(Math.random() * phrases.length);
+    for (let value of arr) return arr[randomNum];
 }
-const phraseArray = getRandomPhraseAsArray(phrases);
+const phraseArray = getRandomPhraseAsArray(phrases).split('');
 console.log(phraseArray);
-
-
-// Display phrase
-function addPhraseToDisplay(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let li = document.createElement('li');
-        li.textContent = arr[i];
-        phraseUL.appendChild(li);
-        if (arr[i] !== " ") {
-            li.className = 'letter';
-        } else {
-            li.className = 'space';
-        }
-    }
-}
-addPhraseToDisplay(phraseArray);
-
-
-// Keyboard clicks
-qwerty.addEventListener('click', e => {
-    if (e.target.tagName === 'BUTTON') {
-        const button = e.target;
-        button.className += 'chosen';
-        button.disabled = 'true';
-        const letterFound = checkLetter(button);
-        if (letterFound === null) {
-            missedGuess -= 1
-            lives.src = 'images/lostHeart.png';
-        }
-    }
-});
 
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(btn) {
@@ -83,6 +51,20 @@ function checkLetter(btn) {
     });
     return match;
 }
+
+// Keyboard clicks
+qwerty.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') {
+        const button = e.target;
+        button.className = 'chosen';
+        button.disabled = 'true';
+        const letterFound = checkLetter(button);
+        if (letterFound === null) {
+            missedGuess -= 1
+            lives.src = 'images/lostHeart.png';
+        }
+    }
+});
 
 // CheckWin Function checking if the game has been won or lost
 function checkWin() {
@@ -100,6 +82,21 @@ function checkWin() {
         startButton.textContent = 'Please try again';
     }
 }
+
+// Display Phrase
+function addPhraseToDisplay(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let li = document.createElement('li');
+        li.textContext = arr[i];
+        phraseUL.appendChild(li);
+        if (arr[i] !== '') {
+            li.className = 'letter';
+        } else {
+            li.className = 'space';
+        }
+    }
+}
+addPhraseToDisplay(phrases);
 
 // Resetting the game after a win or loss
 function resetGame() {
