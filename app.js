@@ -47,15 +47,14 @@ function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
         li.textContext = arr[i];
-        phraseUL.appendChild(li);
-        if (arr[i] !== '') {
+        if (arr[i] !== ' ') {
             li.className = 'letter';
         } else {
             li.className = 'space';
         }
+        phraseUL.appendChild(li);
     }
 }
-addPhraseToDisplay(phraseArray);
 
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(button) {
@@ -75,7 +74,7 @@ qwerty.addEventListener('click', e => {
         const button = e.target;
         button.className = 'chosen';
         button.disabled = 'true';
-        const letterFound = checkLetter(button);
+        const letterFound = checkLetter(button.textContent);
         if (letterFound === null) {
             missedGuess -= 1
             lives.src = 'images/lostHeart.png';
