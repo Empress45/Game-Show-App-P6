@@ -55,15 +55,15 @@ function addPhraseToDisplay(arr) {
         }
     }
 }
-addPhraseToDisplay(phrases);
+addPhraseToDisplay(phraseArray);
 
 // CheckLetter Function checking for letter in the phrase
-function checkLetter(btn) {
+function checkLetter(button) {
     let match = null;
     document.querySelectorAll('.letter').forEach((letter) => {
-        if (btn === letter.textContent.toLowerCase()) {
+        if (button === letter.textContent.toLowerCase()) {
             letter.className = 'letter show';
-            match = btn;
+            match = button;
         }
     });
     return match;
