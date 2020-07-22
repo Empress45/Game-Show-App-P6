@@ -76,8 +76,8 @@ qwerty.addEventListener('click', e => {
         button.disabled = 'true';
         const letterFound = checkLetter(button.textContent);
         if (letterFound === null) {
-            missedGuess -= 1
-            lives.src = 'images/lostHeart.png';
+            lives[missedGuess].firstChild.src = 'images/lostHeart.png';
+            missedGuess += 1
         }
     }
 });
