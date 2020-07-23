@@ -38,9 +38,6 @@ function getRandomPhraseAsArray(arr) {
     const words = randomPhrase.split('');
     return words;
 }
-const phraseArray = getRandomPhraseAsArray(phrases);
-console.log(phraseArray);
-
 
 // Display Phrase
 function addPhraseToDisplay(arr) {
@@ -55,6 +52,9 @@ function addPhraseToDisplay(arr) {
         phraseUL.appendChild(li);
     }
 }
+
+const phraseArray = getRandomPhraseAsArray(phrases);
+console.log(phraseArray);
 
 // CheckLetter Function checking for letter in the phrase
 function checkLetter(button) {
