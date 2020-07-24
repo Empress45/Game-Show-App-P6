@@ -61,7 +61,7 @@ function checkLetter(button) {
     let match = null;
     document.querySelectorAll('.letter').forEach((letter) => {
         if (button === letter.textContent.toLowerCase()) {
-            letter.className = 'letter show';
+            letter.className += 'letter show';
             match = button;
         }
     });
@@ -73,24 +73,25 @@ qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
         const button = e.target;
         button.className = 'chosen';
-        button.disabled = 'true';
+        button.disabled = true;
         const letterFound = checkLetter(button.textContent);
         if (letterFound === null) {
             lives[missedGuess].firstChild.src = 'images/lostHeart.png';
-            missedGuess += 1
+            missedGuess++
         }
     }
 });
 
 // CheckWin Function checking if the game has been won or lost
 function checkWin() {
-    let letters = document.getElementByClassName('letter');
-    let shown = document.getElementByClassName('show');
+    let letters = document.getElementByClassName('.letter');
+    let shown = document.getElementByClassName('.show');
     if (shown.length === letters.length) {
         overlay.className = 'winner';
         headline.textContent = 'You have Won!';
         overlay.style.display = 'flex';
         startButton.textContent = 'Please try again';
+
     } else if (missedGuess >= 5) {
         overlay.className = 'Lose';
         headline.textContent = 'You have lost';
@@ -103,10 +104,10 @@ function checkWin() {
 // Resetting the game after a win or loss
 function resetGame() {
     missedGuess = 0;
-    const keyboard = document.querySelectorAll('keyrow button');
+    const keyboard = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < keyboard.length; i++) {
         keyboard[i].className = '';
-        keyboard[i].disabled = 'false';
+        keyboard[i].disabled = false;
     }
     phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
