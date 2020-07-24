@@ -54,6 +54,8 @@ function addPhraseToDisplay(arr) {
 }
 
 const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+
 console.log(phraseArray);
 
 // CheckLetter Function checking for letter in the phrase
@@ -74,8 +76,8 @@ qwerty.addEventListener('click', e => {
         const button = e.target;
         button.className = 'chosen';
         button.disabled = true;
-        const letterFound = checkLetter(button.textContent);
-        if (letterFound === null) {
+        const correctGuess = checkLetter(button.textContent);
+        if (correctGuess === null) {
             lives[missedGuess].firstChild.src = 'images/lostHeart.png';
             missedGuess++
         }
