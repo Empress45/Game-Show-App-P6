@@ -28,7 +28,7 @@ startGame.addEventListener('click', () => {
     if (startGame.textContent == 'Start Game') {
         overlay.style.display = 'none';
     } else if (startGame.textContent == 'Please try again')
-        resetGame()
+        resetGame();
 });
 
 
