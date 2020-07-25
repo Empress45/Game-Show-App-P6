@@ -43,7 +43,7 @@ function getRandomPhraseAsArray(arr) {
 function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
-        li.textContext = arr[i];
+        li.textContent = arr[i];
         if (arr[i] !== ' ') {
             li.className = 'letter';
         } else {
@@ -53,8 +53,8 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+const phraseArray = getRandomPhraseAsArray(phrases);
 
 console.log(phraseArray);
 
@@ -63,12 +63,13 @@ function checkLetter(button) {
     let match = null;
     document.querySelectorAll('.letter').forEach((letter) => {
         if (button === letter.textContent.toLowerCase()) {
-            letter.className += 'letter show';
+            letter.className += 'show';
             match = button;
         }
     });
     return match;
 }
+
 
 // Keyboard clicks
 qwerty.addEventListener('click', e => {
@@ -86,18 +87,18 @@ qwerty.addEventListener('click', e => {
 
 // CheckWin Function checking if the game has been won or lost
 function checkWin() {
-    let letters = document.getElementByClassName('.letter');
-    let shown = document.getElementByClassName('.show');
+    let letters = document.getElementByClassName('li .letter');
+    let shown = document.getElementByClassName('li .show');
     if (shown.length === letters.length) {
         overlay.className = 'winner';
-        headline.textContent = 'You have Won!';
         overlay.style.display = 'flex';
+        headline.textContent = 'You have Won!';
         startButton.textContent = 'Please try again';
 
     } else if (missedGuess >= 5) {
         overlay.className = 'Lose';
-        headline.textContent = 'You have lost';
         overlay.style.display = 'flex';
+        headline.textContent = 'You have lost';
         startButton.textContent = 'Please try again';
     }
 }
@@ -111,6 +112,8 @@ function resetGame() {
         keyboard[i].className = '';
         keyboard[i].disabled = false;
     }
+    addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+
     phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
