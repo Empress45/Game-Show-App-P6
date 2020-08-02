@@ -22,5 +22,5 @@ function getRandomPhraseAsArray(arr) {
     const lengthArray = Math.floor(Math.random() * phrases.length);
     randomPhrase = phrase[lengthArray];
     phraseWord = randomPhrase.split(" ");
-    return phraseWord
+    return phraseWord;
 };
