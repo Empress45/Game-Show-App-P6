@@ -25,10 +25,8 @@ const phrases = ["May the force be with you",
 
 // Listening for click on Start Game Button while hiding overlay
 startGame.addEventListener('click', () => {
-    if (startGame.textContent == 'Start Game') {
+    if (startGame.textContent == 'Start Game')
         overlay.style.display = 'none';
-    } else if (startGame.textContent == 'Please try again')
-        resetGame();
 });
 
 
@@ -41,7 +39,7 @@ function getRandomPhraseAsArray(arr) {
 
 // Display Phrase
 function addPhraseToDisplay(arr) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i += 1) {
         let li = document.createElement('li');
         li.textContent = arr[i];
         if (arr[i] !== ' ') {
@@ -63,7 +61,7 @@ function checkLetter(button) {
     let match = null;
     document.querySelectorAll('.letter').forEach((letter) => {
         if (button === letter.textContent.toLowerCase()) {
-            letter.className += 'show';
+            letter.className += ' show';
             match = button;
         }
     });
@@ -83,18 +81,17 @@ qwerty.addEventListener('click', e => {
             missedGuess++
         }
     }
+    checkWin();
 });
 
 // CheckWin Function checking if the game has been won or lost
 function checkWin() {
-    let letters = document.getElementByClassName('letter');
-    let shown = document.getElementByClassName('show');
+    let letters = document.getElementsByClassName('letter');
+    let shown = document.getElementsByClassName('show');
     if (shown.length === letters.length) {
         overlay.className = 'winner';
         overlay.style.display = 'flex';
         headline.textContent = 'You have Won!';
-        startGame.textContent = 'Please try again';
-
     } else if (missedGuess >= 5) {
         overlay.className = 'Lose';
         overlay.style.display = 'flex';
@@ -116,4 +113,5 @@ function resetGame() {
         liveHeart[i].classsName = 'tries';
         triesImg[i].src = 'images/lostHeart.png';
     }
+    checkWin();
 }
