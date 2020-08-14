@@ -24,9 +24,10 @@ const phrases = ["May the force be with you",
 
 // Listening for click on Start Game Button while hiding overlay
 startGame.addEventListener('click', () => {
-    const startGame = document.querySelector('.btn__reset');
-    if (startGame.textContent == 'Start Game')
+    if (startGame.textContent == 'Start Game') {
         overlay.style.display = 'none';
+    } else if (startGame.textContent == 'Please try again')
+        resetGame();
 });
 
 
@@ -39,7 +40,7 @@ function getRandomPhraseAsArray(arr) {
 
 // Display Phrase
 function addPhraseToDisplay(arr) {
-    for (let i = 0; i < arr.length; i += 1) {
+    for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
         li.textContent = arr[i];
         if (arr[i] !== ' ') {
