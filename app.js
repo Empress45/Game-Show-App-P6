@@ -3,6 +3,7 @@ const phrase = document.getElementById('#phrase');
 const qwerty = document.getElementById('qwerty');
 const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
+const startGame = document.querySelector('.btn__reset');
 const lives = document.querySelectorAll('.tries');
 const overlay = document.getElementById('overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
@@ -24,10 +25,8 @@ const phrases = ["May the force be with you",
 
 // Listening for click on Start Game Button while hiding overlay
 startGame.addEventListener('click', () => {
-    if (startGame.textContent == 'Start Game') {
+    if (startGame.textContent == 'Start Game')
         overlay.style.display = 'none';
-    } else if (startGame.textContent == 'Please try again')
-        resetGame();
 });
 
 
@@ -109,6 +108,8 @@ function resetGame() {
         keyboard[i].className = '';
         keyboard[i].disabled = false;
     }
+    addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+
     phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
