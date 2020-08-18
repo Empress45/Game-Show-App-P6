@@ -5,7 +5,7 @@ const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
 const startGame = document.querySelector('.btn__reset');
 const lives = document.querySelectorAll('.tries');
-const overlay = document.getElementById('overlay');
+const overlay = document.querySelector('#overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
 let triesImg = Array.from(document.querySelectorAll('tries img'));
@@ -75,10 +75,11 @@ qwerty.addEventListener('click', e => {
         const button = e.target;
         button.className = 'chosen';
         button.disabled = true;
-        const correctGuess = checkLetter(button.textContent);
-        if (correctGuess === null) {
-            lives[missedGuess].firstChild.src = 'images/lostHeart.png';
-            missedGuess++
+        const letterFound = checkLetter(button.textContent);
+        if (letterFound == null) {
+            lives[missedGuess].src = 'images/lostHeart.png';
+            lives.length--;
+            missedGuess++;
         }
     }
     checkWin();
@@ -95,18 +96,19 @@ function checkWin() {
     } else if (missedGuess >= 5) {
         overlay.className = 'Lose';
         overlay.style.display = 'flex';
-        headline.textContent = 'You have lost';
-        startGame.textContent = 'Please try again';
+        headline.textContent = 'Game Over';
+        startGame.textContent = 'Start Over';
     }
 }
+
 
 // Resetting the game after a win or loss
 function resetGame() {
     missedGuess = 0;
-    const keyboard = document.querySelectorAll('.keyrow button');
-    for (let i = 0; i < keyboard.length; i++) {
-        keyboard[i].className = '';
-        keyboard[i].disabled = false;
+    let keyboardBtn = document.querySelectorAll('.keyrow button');
+    for (let i = 0; i < keyboardBtn.length; i++) {
+        keyboardBtn[i].className = '';
+        keyboardBtn[i].disabled = false;
     }
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 
