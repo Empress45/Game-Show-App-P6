@@ -3,7 +3,7 @@ const phrase = document.getElementById('#phrase');
 const qwerty = document.getElementById('qwerty');
 const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
-const startGame = document.querySelector('.btn__reset');
+const resetButton = document.querySelector('.btn__reset');
 const lives = document.querySelectorAll('.tries');
 const overlay = document.querySelector('#overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
@@ -24,8 +24,8 @@ const phrases = ["May the force be with you",
 ];
 
 // Listening for click on Start Game Button while hiding overlay
-startGame.addEventListener('click', () => {
-    if (startGame.textContent == 'Start Game')
+resetButton.addEventListener('click', () => {
+    if (resetButton.textContent == 'Start Game')
         overlay.style.display = 'none';
 });
 
@@ -97,7 +97,7 @@ function checkWin() {
         overlay.className = 'Lose';
         overlay.style.display = 'flex';
         headline.textContent = 'Game Over';
-        startGame.textContent = 'Start Over';
+        resetButton.textContent = 'Start Over';
     }
 }
 
