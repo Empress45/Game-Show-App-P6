@@ -5,14 +5,9 @@ const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
 const resetButton = document.querySelector('.btn__reset');
 const lives = document.querySelectorAll('.tries');
-const overlay = document.querySelector('#overlay');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
 let triesImg = Array.from(document.querySelectorAll('tries img'));
-
-
-// Guesses Missed initialized with 0
-let missedGuess = 0;
 
 
 // Phrases Array
@@ -23,10 +18,16 @@ const phrases = ["May the force be with you",
     "Alright Alright Alright"
 ];
 
+// Guesses Missed initialized with 0
+missedGuess = 0;
+
 // Listening for click on Start Game Button while hiding overlay
 resetButton.addEventListener('click', () => {
-    if (resetButton.textContent == 'Start Game')
-        overlay.style.display = 'none';
+    for (let i = 0; i < keyboardBtn.length; i++) {
+        keyboardBtn[i].style.cursor = "pointer";
+        const overlay = document.querySelector('#overlay');
+        overlay.style.display = "none";
+    }
 });
 
 
