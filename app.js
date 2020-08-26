@@ -23,11 +23,10 @@ missedGuess = 0;
 
 // Listening for click on Start Game Button while hiding overlay
 resetButton.addEventListener('click', () => {
-    for (let i = 0; i < keyboardBtn.length; i++) {
-        keyboardBtn[i].style.cursor = "pointer";
-        const overlay = document.querySelector('#overlay');
-        overlay.style.display = "none";
-    }
+    if (resetButton.textContent == 'Start Game') {
+        overlay.style.display = 'none';
+    } else if (resetButton.textContent == 'Please try Again')
+        resetGame();
 });
 
 
@@ -115,7 +114,7 @@ function resetGame() {
     phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
-        triesImg[i].src = 'images/lostHeart.png';
+        triesImg[i].firstChild.src = 'images/lostHeart.png';
     }
     checkWin();
 }
