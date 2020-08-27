@@ -4,6 +4,7 @@ const qwerty = document.getElementById('qwerty');
 const headline = document.querySelector('.title');
 const phraseUL = document.querySelector('#phrase ul');
 const resetButton = document.querySelector('.btn__reset');
+const overlay = document.querySelector('#overlay');
 const lives = document.querySelectorAll('.tries');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
@@ -77,7 +78,7 @@ qwerty.addEventListener('click', e => {
         button.disabled = true;
         const letterFound = checkLetter(button.textContent);
         if (letterFound == null) {
-            lives[missedGuess].firstChild.src = 'images/lostHeart.png';
+            lives[missedGuess].src = 'images/liveHeart.png';
             missedGuess += 1;
         }
     }
