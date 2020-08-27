@@ -127,8 +127,8 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
-  background-color: #fff;
+  color: #fff;
+  background-color: rgb(185, 181, 235);
   justify-content: center;
   top: 0;
   bottom: 0;
