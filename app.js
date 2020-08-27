@@ -115,7 +115,7 @@ function resetGame() {
     phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
-        triesImg[i].firstChild.src = 'images/lostHeart.png';
+        triesImg[i].firstChild.src = 'images/liveHeart.png';
     }
     checkWin();
 }
