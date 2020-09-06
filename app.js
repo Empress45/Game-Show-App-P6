@@ -8,7 +8,7 @@ const overlay = document.querySelector('#overlay');
 const lives = document.querySelectorAll('.tries');
 let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
-let triesImg = Array.from(document.querySelectorAll('tries img'));
+let triesImg = Array.from(document.querySelectorAll('.tries img'));
 
 
 // Phrases Array
@@ -78,7 +78,7 @@ qwerty.addEventListener('click', e => {
         button.disabled = true;
         const letterFound = checkLetter(button.textContent);
         if (letterFound == null) {
-            lives[missedGuess].src = 'images/liveHeart.png';
+            triesImg[missedGuess].src = 'images/lostHeart.png';
             missedGuess += 1;
         }
     }
@@ -110,6 +110,7 @@ function resetGame() {
         keyboardBtn[i].className = '';
         keyboardBtn[i].disabled = false;
     }
+
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 
     phraseUL.textContent = '';
