@@ -26,7 +26,7 @@ missedGuess = 0;
 resetButton.addEventListener('click', () => {
     if (resetButton.textContent == 'Start Game') {
         overlay.style.display = 'none';
-    } else if (resetButton.textContent == 'Please try Again')
+    } else if (resetButton.textContent == 'Start Again')
         resetGame();
 });
 
@@ -97,7 +97,7 @@ function checkWin() {
         overlay.className = 'Lose';
         overlay.style.display = 'flex';
         headline.textContent = 'Game Over';
-        resetButton.textContent = 'Start Over';
+        resetButton.textContent = 'Start Again';
     }
 }
 
@@ -113,11 +113,12 @@ function resetGame() {
 
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 
-    phraseUL.textContent = '';
+    phraseUL.textContent = ' ';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
         triesImg[i].firstChild.src = 'images/liveHeart.png';
     }
     checkWin();
-}
 
+
+}
