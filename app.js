@@ -6,7 +6,7 @@ const phraseUL = document.querySelector('#phrase ul');
 const resetButton = document.querySelector('.btn__reset');
 const overlay = document.querySelector('#overlay');
 const lives = document.querySelectorAll('.tries');
-let keyboardBtn = Array.from(document.querySelectorAll('.keyrow button'));
+let keyboard = Array.from(document.querySelectorAll('.keyrow button'));
 let liveHeart = Array.from(document.querySelectorAll('ol li'));
 let triesImg = Array.from(document.querySelectorAll('.tries img'));
 
@@ -105,10 +105,10 @@ function checkWin() {
 // Resetting the game after a win or loss
 function resetGame() {
     missedGuess = 0;
-    let keyboardBtn = document.querySelectorAll('.keyrow button');
-    for (let i = 0; i < keyboardBtn.length; i++) {
-        keyboardBtn[i].className = '';
-        keyboardBtn[i].disabled = false;
+    let keyboard = document.querySelectorAll('.keyrow button');
+    for (let i = 0; i < keyboard.length; i++) {
+        keyboard[i].className = ' ';
+        keyboard[i].disabled = false;
     }
 
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
