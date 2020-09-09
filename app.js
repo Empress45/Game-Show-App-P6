@@ -104,7 +104,6 @@ function checkWin() {
 
 // Resetting the game after a win or loss
 function resetGame() {
-    missedGuess = 0;
     let keyboardBtn = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < keyboardBtn.length; i++) {
         keyboardBtn[i].className = ' ';
@@ -117,6 +116,7 @@ function resetGame() {
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].className = 'tries';
         triesImg[i].src = 'images/liveHeart.png';
+        missedGuess = 0;
     }
     checkWin();
 }
