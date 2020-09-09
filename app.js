@@ -106,13 +106,13 @@ function checkWin() {
 function resetGame() {
     let keyboardBtn = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < keyboardBtn.length; i++) {
-        keyboardBtn[i].className = ' ';
+        keyboardBtn[i].className = '';
         keyboardBtn[i].disabled = false;
     }
 
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 
-    phraseUL.textContent = ' ';
+    phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].className = 'tries';
         triesImg[i].src = 'images/liveHeart.png';
