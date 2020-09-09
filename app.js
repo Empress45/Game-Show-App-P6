@@ -107,18 +107,16 @@ function resetGame() {
     missedGuess = 0;
     let keyboard = document.querySelectorAll('.keyrow button');
     for (let i = 0; i < keyboard.length; i++) {
-        keyboard[i].className = ' ';
+        keyboard[i].className = '';
         keyboard[i].disabled = false;
     }
 
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 
-    phraseUL.textContent = ' ';
+    phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].classsName = 'tries';
         triesImg[i].firstChild.src = 'images/liveHeart.png';
     }
     checkWin();
-
-
 }
