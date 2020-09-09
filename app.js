@@ -26,7 +26,7 @@ missedGuess = 0;
 startButton.addEventListener('click', () => {
     if (startButton.textContent == 'Start Game') {
         overlay.style.display = 'none';
-    } else if (resetButton.textContent == 'Start Again')
+    } else if (startButton.textContent == 'Start Again')
         resetGame();
 });
 
