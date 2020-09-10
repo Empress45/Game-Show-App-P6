@@ -26,7 +26,7 @@ missedGuess = 0;
 startButton.addEventListener('click', () => {
     if (startButton.textContent === 'Start Game') {
         overlay.style.display = 'none';
-    } else if (startButton.textContent === 'Start Over :-)') {
+    } else if (startButton.textContent === 'Try Again :-)') {
         overlay.style.display = 'none';
         resetGame();
     }
@@ -98,7 +98,7 @@ function checkWin() {
         overlay.className = 'Lose';
         overlay.style.display = 'flex';
         headline.textContent = 'OH NO!';
-        startButton.textContent = 'Start Over :-)';
+        startButton.textContent = 'Try Again :-)';
     }
 }
 
