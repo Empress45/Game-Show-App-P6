@@ -24,10 +24,12 @@ missedGuess = 0;
 
 // Listening for click on Start Game Button while hiding overlay
 startButton.addEventListener('click', () => {
-    if (startButton.textContent == 'Start Game') {
+    if (startButton.textContent === 'Start Game') {
         overlay.style.display = 'none';
-    } else if (startButton.textContent == 'Start Again')
+    } else if (startButton.textContent === 'Start Again') {
+        overlay.style.display = 'none';
         resetGame();
+    }
 });
 
 // Random phrase array returning a random phrase
@@ -107,14 +109,15 @@ function resetGame() {
         keyboardBtn[i].className = '';
         keyboardBtn[i].disabled = false;
     }
+    phraseUL.innerHTML = '';
 
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
-
-    phraseUL.textContent = '';
     for (let i = 0; i < liveHeart.length; i++) {
         liveHeart[i].className = 'tries';
         triesImg[i].src = 'images/liveHeart.png';
         missedGuess = 0;
     }
-    checkWin();
 }
+
+
+
