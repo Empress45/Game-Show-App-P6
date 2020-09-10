@@ -78,7 +78,7 @@ qwerty.addEventListener('click', e => {
         button.className = 'chosen';
         button.disabled = true;
         const letterFound = checkLetter(button.textContent);
-        if (letterFound == null) {
+        if (letterFound === null) {
             triesImg[missedGuess].src = 'images/lostHeart.png';
             missedGuess += 1;
         }
